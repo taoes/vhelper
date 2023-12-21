@@ -12,11 +12,11 @@ var (
 	kind          string
 	EncodeCommand = &cobra.Command{
 		Use:   "encode",
-		Short: "en",
-		Long:  "字符串编码",
+		Short: "encode strings or file contents",
+		Long:  "encode strings or file contents",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
-				err := errors.New("未给定需要编码的字符串")
+				err := errors.New("not found content")
 				return err
 			}
 
@@ -31,11 +31,11 @@ var (
 
 			}
 
-			return errors.New("无效的编码方式")
+			return errors.New("no valid encoding method is provided")
 		},
 	}
 )
 
 func init() {
-	EncodeCommand.Flags().StringVar(&kind, "type", "", "编码方式")
+	EncodeCommand.Flags().StringVar(&kind, "type", "base64", "encode type ")
 }

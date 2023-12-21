@@ -11,10 +11,10 @@ var (
 	path       string
 	WebCommand = &cobra.Command{
 		Use:   "web",
-		Short: "",
-		Long:  "",
+		Short: "Start the static resource service on the local port",
+		Long:  "Start the static resource service on the local port",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("Web Static Run At %s For path %s .....", host, path)
+			fmt.Printf("The static resource service will be started on port  %s For path %s .....", host, path)
 			fmt.Println()
 			http.Handle("/", http.FileServer(http.Dir(path)))
 			_ = http.ListenAndServe(host, nil)

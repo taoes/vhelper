@@ -1,11 +1,12 @@
 package main
 
 import (
-	"fmt"
+	"errors"
 	"github.com/spf13/cobra"
 	"os"
 	"vhelper/decode"
 	"vhelper/encode"
+	"vhelper/qrcode"
 	"vhelper/time"
 	"vhelper/web"
 )
@@ -13,11 +14,10 @@ import _ "github.com/spf13/cobra"
 
 var rootCmd = &cobra.Command{
 	Use:   "help",
-	Short: "",
-	Long:  "",
+	Short: "Terminal command-line assistant for development engineers",
+	Long:  "Terminal command-line assistant for development engineers",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		fmt.Println("Hello,World!")
-		return nil
+		return errors.New("No valid command found, please refer to the following documentation for usage")
 	},
 }
 
@@ -26,6 +26,7 @@ func init() {
 	rootCmd.AddCommand(time.TimeCommand)
 	rootCmd.AddCommand(encode.EncodeCommand)
 	rootCmd.AddCommand(decode.DecodeCommand)
+	rootCmd.AddCommand(qrcode.QrCodeCommand)
 }
 
 func main() {

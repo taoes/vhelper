@@ -11,8 +11,8 @@ var (
 	format      string
 	TimeCommand = &cobra.Command{
 		Use:   "time",
-		Short: "",
-		Long:  "",
+		Short: "Outputs past or future time data",
+		Long:  "Outputs past or future time data",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			currentTime := time.Now() //当前时间
 
@@ -32,8 +32,8 @@ var (
 			currentSecond := currentTime.Second() //当前秒
 
 			//打印结果
-			fmt.Printf("时间戳(秒): %d \n时间戳(毫秒): %d\n", currentTime.Unix(), currentTime.UnixMilli())
-			fmt.Printf("时间字符串：%d-%s-%s %s:%s:%s\n", currentYear,
+			fmt.Printf("Second timestamp: %d \nMillsecond Timestamp: %d\n", currentTime.Unix(), currentTime.UnixMilli())
+			fmt.Printf("Time ：%d-%s-%s %s:%s:%s\n", currentYear,
 				utils.AddPrefix(int(currentMonth), "0"),
 				utils.AddPrefix(currentDay, "0"),
 				utils.AddPrefix(currentHour, "0"),
