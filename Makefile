@@ -6,5 +6,8 @@ install: build
 	@sudo mv ./v /usr/bin/
 
 
+push:
+	@git push github main
+	@git push gitee main
 time: build
 	./main time -h
