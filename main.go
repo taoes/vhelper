@@ -6,6 +6,7 @@ import (
 	"os"
 	"vhelper/decode"
 	"vhelper/encode"
+	"vhelper/ip"
 	"vhelper/qrcode"
 	"vhelper/time"
 	"vhelper/web"
@@ -27,6 +28,7 @@ func init() {
 	rootCmd.AddCommand(encode.EncodeCommand)
 	rootCmd.AddCommand(decode.DecodeCommand)
 	rootCmd.AddCommand(qrcode.QrCodeCommand)
+	rootCmd.AddCommand(ip.Command)
 }
 
 func main() {

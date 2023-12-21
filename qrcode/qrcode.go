@@ -17,11 +17,11 @@ var (
 	filePath      string
 	QrCodeCommand = &cobra.Command{
 		Use:   "qrcode",
-		Short: "",
-		Long:  "",
+		Short: "Encode the given string text into QR code and save it to file",
+		Long:  "Encode the given string text into QR code and save it to file",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
-				return errors.New("No valid content found")
+				return errors.New("No found content found")
 			}
 
 			content := args[0]
