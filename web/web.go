@@ -7,9 +7,9 @@ import (
 )
 
 var (
-	host       string
-	path       string
-	WebCommand = &cobra.Command{
+	host    string
+	path    string
+	Command = &cobra.Command{
 		Use:   "web",
 		Short: "Start the static resource service on the local port",
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -23,6 +23,6 @@ var (
 )
 
 func init() {
-	WebCommand.Flags().StringVar(&host, "host", ":1234", "Web service host")
-	WebCommand.Flags().StringVar(&path, "path", ".", "Static Resource path")
+	Command.Flags().StringVar(&host, "host", ":1234", "Web service host")
+	Command.Flags().StringVar(&path, "path", ".", "Static Resource path")
 }

@@ -2,7 +2,10 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+	_ "github.com/spf13/viper"
 	"os"
 	"vhelper/agent"
 	"vhelper/converter"
@@ -16,17 +19,30 @@ import (
 )
 import _ "github.com/spf13/cobra"
 
+var (
+	lang string
+	zone string
+)
+
 var rootCmd = &cobra.Command{
-	Use:   "help",
+	Use:   "config",
 	Short: "Terminal command-line assistant for development engineers",
 	Long:  "Terminal command-line assistant for development engineers",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if len(lang) > 0 {
+			viper.Set("lang", lang)
+			fmt.Println("The current language has been updated to " + lang)
+		}
+
+		err := viper.WriteConfig()
+		return err
 		return errors.New("No valid command found, please refer to the following documentation for usage")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(web.WebCommand)
+	initConfig()
+	rootCmd.AddCommand(web.Command)
 	rootCmd.AddCommand(time.TimeCommand)
 	rootCmd.AddCommand(encode.EncodeCommand)
 	rootCmd.AddCommand(decode.DecodeCommand)
@@ -35,6 +51,19 @@ func init() {
 	rootCmd.AddCommand(ws.Command)
 	rootCmd.AddCommand(agent.Command)
 	rootCmd.AddCommand(converter.Command)
+}
+
+func initConfig() {
+	dir, err := os.UserConfigDir()
+	if err != nil {
+		os.Exit(-1)
+	}
+	viper.AddConfigPath(dir)
+	viper.SetConfigName("vhelper")
+	viper.SetConfigType("toml")
+	viper.ReadInConfig()
+	rootCmd.PersistentFlags().StringVar(&lang, "lang", "", "language")
+
 }
 
 func main() {
