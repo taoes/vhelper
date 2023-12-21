@@ -4,12 +4,15 @@ import (
 	"errors"
 	"github.com/spf13/cobra"
 	"os"
+	"vhelper/agent"
+	"vhelper/converter"
 	"vhelper/decode"
 	"vhelper/encode"
 	"vhelper/ip"
 	"vhelper/qrcode"
 	"vhelper/time"
 	"vhelper/web"
+	"vhelper/ws"
 )
 import _ "github.com/spf13/cobra"
 
@@ -29,6 +32,9 @@ func init() {
 	rootCmd.AddCommand(decode.DecodeCommand)
 	rootCmd.AddCommand(qrcode.QrCodeCommand)
 	rootCmd.AddCommand(ip.Command)
+	rootCmd.AddCommand(ws.Command)
+	rootCmd.AddCommand(agent.Command)
+	rootCmd.AddCommand(converter.Command)
 }
 
 func main() {

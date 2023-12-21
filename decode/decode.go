@@ -13,7 +13,6 @@ var (
 	DecodeCommand = &cobra.Command{
 		Use:   "decode",
 		Short: "Decode strings or file contents",
-		Long:  "Decode strings or file contents",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				err := errors.New("not found content")

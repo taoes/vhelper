@@ -11,8 +11,7 @@ var (
 	domain  string
 	Command = &cobra.Command{
 		Use:   "ip",
-		Short: "",
-		Long:  ":",
+		Short: "Output computer network IP and other information",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Println("LAN IP list:")
 			for _, ip := range getIpV6() {

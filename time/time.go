@@ -12,7 +12,6 @@ var (
 	TimeCommand = &cobra.Command{
 		Use:   "time",
 		Short: "Outputs past or future time data",
-		Long:  "Outputs past or future time data",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			currentTime := time.Now() //当前时间
 

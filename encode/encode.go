@@ -12,8 +12,7 @@ var (
 	kind          string
 	EncodeCommand = &cobra.Command{
 		Use:   "encode",
-		Short: "encode strings or file contents",
-		Long:  "encode strings or file contents",
+		Short: "Encode strings or file contents",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				err := errors.New("not found content")
