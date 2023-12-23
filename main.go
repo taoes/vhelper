@@ -7,15 +7,18 @@ import (
 	"github.com/spf13/viper"
 	_ "github.com/spf13/viper"
 	"os"
-	"vhelper/agent"
-	"vhelper/converter"
-	"vhelper/decode"
-	"vhelper/encode"
-	"vhelper/ip"
-	"vhelper/qrcode"
-	"vhelper/time"
-	"vhelper/web"
-	"vhelper/ws"
+	"vhelper/img/qrcode"
+	"vhelper/math/hex"
+	"vhelper/net/agent"
+	"vhelper/net/ip"
+	"vhelper/net/proxy"
+	"vhelper/net/web"
+	"vhelper/net/ws"
+	"vhelper/safe/decode"
+	"vhelper/safe/encode"
+	"vhelper/tool/jsonFormat"
+	"vhelper/tool/random"
+	"vhelper/tool/time"
 )
 import _ "github.com/spf13/cobra"
 
@@ -50,7 +53,11 @@ func init() {
 	rootCmd.AddCommand(ip.Command)
 	rootCmd.AddCommand(ws.Command)
 	rootCmd.AddCommand(agent.Command)
-	rootCmd.AddCommand(converter.Command)
+	rootCmd.AddCommand(hex.Command)
+	rootCmd.AddCommand(random.Command)
+	rootCmd.AddCommand(random.Command)
+	rootCmd.AddCommand(jsonFormat.Command)
+	rootCmd.AddCommand(proxy.Command)
 }
 
 func initConfig() {

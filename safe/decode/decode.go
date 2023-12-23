@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/spf13/cobra"
+	"net/url"
+	"strconv"
 	"strings"
 )
 
@@ -29,8 +31,24 @@ var (
 				return nil
 			}
 
-			if strings.Compare(kind, "") == 0 {
+			if strings.Compare(kind, "url") == 0 {
+				res, err := url.QueryUnescape(args[0])
+				if err != nil {
+					return err
+				}
+				fmt.Printf("%s", res)
+				fmt.Println()
+				return nil
+			}
 
+			if strings.Compare(kind, "unicode") == 0 {
+				str, err := strconv.Unquote(strings.Replace(strconv.Quote(args[0]), `\\u`, `\u`, -1))
+				if err != nil {
+					return err
+				}
+				fmt.Printf("%v", str)
+				fmt.Println()
+				return nil
 			}
 
 			return errors.New("no valid decoding method is provided!")
@@ -39,5 +57,5 @@ var (
 )
 
 func init() {
-	DecodeCommand.Flags().StringVar(&kind, "type", "base64", "decode type")
+	DecodeCommand.Flags().StringVar(&kind, "type", "base64", "Decode type: base64, url, unicode")
 }
