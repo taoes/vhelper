@@ -16,13 +16,13 @@ var (
 			fmt.Printf("The static resource service will be started on port  %s For path %s .....", host, path)
 			fmt.Println()
 			http.Handle("/", http.FileServer(http.Dir(path)))
-			_ = http.ListenAndServe(host, nil)
-			return nil
+			err := http.ListenAndServe(host, nil)
+			return err
 		},
 	}
 )
 
 func init() {
-	Command.Flags().StringVar(&host, "host", ":1234", "Web service host")
+	Command.Flags().StringVar(&host, "host", ":9999", "Web service host")
 	Command.Flags().StringVar(&path, "path", ".", "Static Resource path")
 }

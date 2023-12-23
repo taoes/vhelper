@@ -3,6 +3,7 @@ package proxy
 import (
 	"bytes"
 	"compress/gzip"
+	"errors"
 	"fmt"
 	"github.com/spf13/cobra"
 	"io"
@@ -17,10 +18,14 @@ var (
 	port    int
 	host    string
 	debug   bool
+	prefix  string
 	Command = &cobra.Command{
 		Use:   "proxy",
 		Short: "Start the static resource service on the local port",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			if strings.Compare(host, "") == 0 {
+				return errors.New("启动代理服务失败，目标网站未设置,请使用 --host=xxx 设置host!")
+			}
 			log.Println(fmt.Sprintf("代理服务运行中... 端口[%v]", port))
 			err := http.ListenAndServe(":"+strconv.Itoa(port), http.HandlerFunc(DoHandle))
 			return err
@@ -45,7 +50,7 @@ func DoHandle(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	// 转发的URL
-	reqURL := host + url
+	reqURL := host + prefix + url
 
 	// 创建转发用的请求
 	reqProxy, err := http.NewRequest(request.Method, reqURL, strings.NewReader(string(body)))
@@ -156,6 +161,7 @@ func isGzipped(header http.Header) bool {
 
 func init() {
 	Command.Flags().IntVar(&port, "port", 8888, "Web service host")
-	Command.Flags().StringVar(&host, "host", ".", "Static Resource path")
+	Command.Flags().StringVar(&host, "host", "", "Target Host ,eg: https://www.baidu.com")
 	Command.Flags().BoolVar(&debug, "debug", false, "Static Resource path")
+	Command.Flags().StringVar(&prefix, "prefix", "", "Static Resource path")
 }
