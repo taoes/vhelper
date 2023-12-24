@@ -2,6 +2,7 @@ package random
 
 import (
 	"fmt"
+	"github.com/google/uuid"
 	"github.com/spf13/cobra"
 	"golang.org/x/exp/rand"
 	"strconv"
@@ -55,10 +56,21 @@ var (
 					if !numshow {
 						fmt.Printf(lenStr, result)
 					} else {
-						fmt.Printf(lenStr, i, result)
+						fmt.Printf("%d "+lenStr, i, result)
 					}
 				}
 				return nil
+			}
+
+			if format == "uuid" {
+				for i := 0; i < count; i++ {
+					u4 := uuid.New()
+					if !numshow {
+						fmt.Printf("%s\n", u4.String())
+					} else {
+						fmt.Printf("%d %s\n", i, u4.String())
+					}
+				}
 			}
 
 			return nil
@@ -67,7 +79,7 @@ var (
 )
 
 func init() {
-	Command.Flags().StringVar(&format, "type", "number", "随机数类型: string,number,float")
+	Command.Flags().StringVar(&format, "type", "number", "随机数类型: string,number,float,uuid")
 	Command.Flags().Int64Var(&minValue, "min", 0, "随机数字最小范围")
 	Command.Flags().Int64Var(&maxValue, "max", 100, "随机数字最大范围")
 	Command.Flags().IntVar(&count, "count", 1, "生成数量")

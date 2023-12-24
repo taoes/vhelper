@@ -19,6 +19,7 @@ import (
 	"vhelper/safe/encode"
 	"vhelper/safe/password"
 	"vhelper/tool/jsonFormat"
+	"vhelper/tool/pbcopy"
 	"vhelper/tool/random"
 	"vhelper/tool/time"
 )
@@ -44,7 +45,7 @@ var rootCmd = &cobra.Command{
 			fmt.Println("默认搜索引擎更新为：" + searchEng)
 		}
 
-		err := viper.WriteConfig()
+		err := viper.SafeWriteConfig()
 		fmt.Println()
 		return err
 	},
@@ -68,6 +69,7 @@ func init() {
 	rootCmd.AddCommand(search.Command)
 	rootCmd.AddCommand(proxy.Command)
 	rootCmd.AddCommand(webpage.Command)
+	rootCmd.AddCommand(pbcopy.Command)
 }
 
 func initCmdFlag() {
@@ -79,7 +81,7 @@ func initCmdFlag() {
 }
 
 func initConfig() {
-	dir, err := os.UserConfigDir()
+	dir, err := os.UserHomeDir()
 	if err != nil {
 		os.Exit(-1)
 	}
