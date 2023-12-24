@@ -19,7 +19,7 @@ var (
 	letter   string
 	Command  = &cobra.Command{
 		Use:   "random",
-		Short: "Randomly generate numbers or unique IDs",
+		Short: "生成随机数，支持字符串，整数，浮点数",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			rand.Seed(uint64(time.Now().Unix()))
 
@@ -67,10 +67,10 @@ var (
 )
 
 func init() {
-	Command.Flags().StringVar(&format, "type", "number", "随机类型: string,number,float")
+	Command.Flags().StringVar(&format, "type", "number", "随机数类型: string,number,float")
 	Command.Flags().Int64Var(&minValue, "min", 0, "随机数字最小范围")
 	Command.Flags().Int64Var(&maxValue, "max", 100, "随机数字最大范围")
-	Command.Flags().IntVar(&count, "count", 1, "数量")
+	Command.Flags().IntVar(&count, "count", 1, "生成数量")
 	Command.Flags().BoolVar(&numshow, "numshow", false, "是否输出序号")
 	Command.Flags().StringVar(&letter, "letter", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", "随机字符串取样范围")
 	Command.Flags().IntVar(&len, "len", 20, "随机数据的输出长度")

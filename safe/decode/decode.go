@@ -14,10 +14,10 @@ var (
 	kind          string
 	DecodeCommand = &cobra.Command{
 		Use:   "decode",
-		Short: "Decode strings or file contents",
+		Short: "字符串编码工具",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
-				err := errors.New("not found content")
+				err := errors.New("解码字符串或者文件内容")
 				return err
 			}
 
@@ -51,11 +51,11 @@ var (
 				return nil
 			}
 
-			return errors.New("no valid decoding method is provided!")
+			return errors.New("未知的解码方式")
 		},
 	}
 )
 
 func init() {
-	DecodeCommand.Flags().StringVar(&kind, "type", "base64", "Decode type: base64, url, unicode")
+	DecodeCommand.Flags().StringVar(&kind, "type", "base64", "解码方式: base64, url, unicode")
 }

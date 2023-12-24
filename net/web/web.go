@@ -4,16 +4,18 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"net/http"
+	"strconv"
 )
 
 var (
 	host    string
+	port    int
 	path    string
 	Command = &cobra.Command{
 		Use:   "web",
-		Short: "Start the static resource service on the local port",
+		Short: "在本地设备运行静态资源",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("The static resource service will be started on port  %s For path %s .....", host, path)
+			fmt.Printf("静态资源服务器启动在[%s:%s],资源文件路径:%s .....", host, strconv.Itoa(port), path)
 			fmt.Println()
 			http.Handle("/", http.FileServer(http.Dir(path)))
 			err := http.ListenAndServe(host, nil)
@@ -23,6 +25,7 @@ var (
 )
 
 func init() {
-	Command.Flags().StringVar(&host, "host", ":9999", "Web service host")
-	Command.Flags().StringVar(&path, "path", ".", "Static Resource path")
+	Command.Flags().StringVar(&host, "host", "127.0.0.1", "运行主机地址")
+	Command.Flags().IntVar(&port, "port", 3364, "运行端口")
+	Command.Flags().StringVar(&path, "path", ".", "静态资源路径")
 }

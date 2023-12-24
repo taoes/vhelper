@@ -17,11 +17,10 @@ var (
 	filePath      string
 	QrCodeCommand = &cobra.Command{
 		Use:   "qrcode",
-		Short: "Encode the given string text into QR code and save it to file",
-		Long:  "Encode the given string text into QR code and save it to file",
+		Short: "生成二维码文件",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
-				return errors.New("No found content found")
+				return errors.New("没有发现需要编码的内容")
 			}
 
 			content := args[0]
@@ -52,8 +51,8 @@ var (
 )
 
 func init() {
-	QrCodeCommand.Flags().IntVar(&level, "level", 1, "picture level")
-	QrCodeCommand.Flags().IntVar(&size, "size", 256, "picture size")
-	QrCodeCommand.Flags().StringVar(&filePath, "file", "/tmp/qrcode.png", "picture command")
+	QrCodeCommand.Flags().IntVar(&level, "level", 1, "二维码等级")
+	QrCodeCommand.Flags().IntVar(&size, "size", 256, "图片大小")
+	QrCodeCommand.Flags().StringVar(&filePath, "path", "./qrcode.png", "文件保存路径")
 
 }

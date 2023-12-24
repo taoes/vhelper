@@ -11,7 +11,7 @@ var (
 	base    int
 	Command = &cobra.Command{
 		Use:   "hex",
-		Short: "Provide the ability to convert resources such as numbers",
+		Short: "提供数据之间的进制转换",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				return errors.New("未给定需要转换的数字")
@@ -21,10 +21,10 @@ var (
 			if err != nil {
 				return err
 			}
-			fmt.Printf("HEX Value: %s\n", strconv.FormatInt(tenNumber, 16))
-			fmt.Printf("DEC Value: %s\n", strconv.FormatInt(tenNumber, 10))
-			fmt.Printf("OCT Value: %s\n", strconv.FormatInt(tenNumber, 8))
-			fmt.Printf("BIN Value: %s\n", strconv.FormatInt(tenNumber, 2))
+			fmt.Printf("十六进制: %s\n", strconv.FormatInt(tenNumber, 16))
+			fmt.Printf("十进制: %s\n", strconv.FormatInt(tenNumber, 10))
+			fmt.Printf("八进制: %s\n", strconv.FormatInt(tenNumber, 8))
+			fmt.Printf("二进制: %s\n", strconv.FormatInt(tenNumber, 2))
 
 			return nil
 		},
@@ -32,6 +32,6 @@ var (
 )
 
 func init() {
-	Command.Flags().IntVar(&base, "base", 10, "Current Base: 16,10,8,2")
+	Command.Flags().IntVar(&base, "base", 10, "参数的进制: 16,10,8,2")
 
 }

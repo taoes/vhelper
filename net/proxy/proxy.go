@@ -21,7 +21,7 @@ var (
 	prefix  string
 	Command = &cobra.Command{
 		Use:   "proxy",
-		Short: "Start the static resource service on the local port",
+		Short: "在本地设备创建Http代理服务",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if strings.Compare(host, "") == 0 {
 				return errors.New("启动代理服务失败，目标网站未设置,请使用 --host=xxx 设置host!")
@@ -160,8 +160,8 @@ func isGzipped(header http.Header) bool {
 }
 
 func init() {
-	Command.Flags().IntVar(&port, "port", 8888, "Web service host")
-	Command.Flags().StringVar(&host, "host", "", "Target Host ,eg: https://www.baidu.com")
-	Command.Flags().BoolVar(&debug, "debug", false, "Static Resource path")
-	Command.Flags().StringVar(&prefix, "prefix", "", "Static Resource path")
+	Command.Flags().IntVar(&port, "port", 3364, "运行端口")
+	Command.Flags().StringVar(&host, "host", "", "目标主机地址,eg: https://www.baidu.com")
+	Command.Flags().BoolVar(&debug, "debug", false, "调试模式")
+	Command.Flags().StringVar(&prefix, "prefix", "", "转发前缀")
 }

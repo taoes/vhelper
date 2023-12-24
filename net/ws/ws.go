@@ -10,18 +10,17 @@ var (
 	url     string
 	Command = &cobra.Command{
 		Use:   "ws",
-		Short: "Establish a WebSocket link for easy debugging of network services",
+		Short: "建立WebSocket连接，并进行调试",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if strings.Compare(url, "") == 0 {
-				return errors.New("Please enter a valid WebSocket address")
+				return errors.New("请输入一个有效的WebSocket地址")
 			}
-			// TODO
 			return nil
 		},
 	}
 )
 
 func init() {
-	Command.Flags().StringVar(&url, "url", "", "WebSocket Url Address, eg: 'ws://xxxx' OR 'wss://xxx'")
+	Command.Flags().StringVar(&url, "url", "", "WebSocket地址, 支持ws/wss 协议")
 
 }

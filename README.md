@@ -8,6 +8,54 @@
 ![Git](https://camo.githubusercontent.com/561f3d4fd727fcca82984c91a65eca069ff34a435072158f6947c4ca52370eae/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769742d4630353033323f7374796c653d666c61742d737175617265266c6f676f3d676974266c6f676f436f6c6f723d7768697465)
 ![Github](https://camo.githubusercontent.com/b620c6ad3a16345749694c16a7c06a101c9c7757179e6072352e4035fa562837/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4769746875622d3138313731373f7374796c653d666c61742d737175617265266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465)
 
-[中文](./README.ZH.md) | 英文
-## About
-A collection of terminal command-line tools designed for programmers, based on the Go language, supporting operating systems such as Windows, Mac, and Linux. Currently under development, we welcome your attention
+中文 | [英文](./README.md)
+
+## 关于
+一款转为程序员设计的终端命令行工具集合，基于Go 语言设计，支持Windows, Mac以及Linux  等操作系统,  目前正在开发中, 欢迎您的关注
+
+## 使用帮助
++ `v  [command] help` / `v [command] --help` / `v  [command] -h`
+
+
+## 配置
++ `v config --lang=xx`
+
+## 发布日志
+
+## 命令列表
+
+### 计算
+#### 进制转换
+`v hex 123` 将输出16/10/8/2 进制的数据，参数如下
+1. base： 给定数据的进制，默认为10进制，如将16进制数据转换 `v hex FF --base=16`
+
+
+### 安全
++ 编码 `v encode [content] [--type=base64]`
++ 解码 `v decode [content] [--type=base64]`
++ 密码 `v password [--count=5] [--len=10] [--numshow=true]`
+
+### 工具
++ JSON
+
++ 随机数字
+
++ 时间 `v time [--after=4h]`
+
+
+### 网络
+
++ 查询IP `v ip [--domain=www.baidu.com]`
++ 静态资源服务 `v web [--host=:3364] [--path=.]`
+>  1. host: 开启的款口和主机地址，比如 `v web --host=:1234` 将使服务启动在`3364`端口
+>  2. path：静态资源地址，默认值是当前路径，`v web --path=/tmp`
+
++ 正向代理服务器 `v proxy --host=xxxx [--port=3364] [--debug=false] [--prefix=xx]`
+>  1. port: 服务启动端口,默认值`3364`
+>  2. host: 必填参数, 目标主机的主机名，如 `v proxy --host=https://www.baidu.com`
+>  3. debug： 是否是调试模式, 默认值 false。调试模式将输出更多细节日志
+>  4. prefix: 转发前缀,将在请求URI添加的前缀
+
++ WebSocket `v ws --url=ws://xxxx` 或者
++ DNS `v dns [--refresh=true] [--domain=xxx]` 刷新DNS或者解析DNS
++ Ping `v ping host --count=10` PING 主机

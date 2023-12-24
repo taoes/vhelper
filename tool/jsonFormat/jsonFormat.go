@@ -12,8 +12,7 @@ import (
 var (
 	Command = &cobra.Command{
 		Use:   `json`,
-		Short: `json`,
-		Long:  `JSON`,
+		Short: `JSON格式化`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				return errors.New("未给定JSON内容")

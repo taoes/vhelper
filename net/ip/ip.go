@@ -11,13 +11,13 @@ var (
 	domain  string
 	Command = &cobra.Command{
 		Use:   "ip",
-		Short: "Output computer network IP and other information",
+		Short: "输出当前设备的网络IP信息",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Println("LAN IP list:")
+			fmt.Println("设备网络:")
 			for _, ip := range getIpV6() {
 				fmt.Printf("\tip:%-40s\tmask:%s\n", ip.IP.String(), ip.Mask.String())
 			}
-			fmt.Println("Current IP: ")
+			fmt.Println("使用中的 IP: ")
 			fmt.Println("\t" + getUserIp())
 			return nil
 		},
@@ -31,7 +31,7 @@ func init() {
 func getUserIp() string {
 	dial, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
-		return "NOT FOUND"
+		return "未发现"
 	}
 	addr := dial.LocalAddr().String()
 	index := strings.LastIndex(addr, ":")

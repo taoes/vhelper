@@ -36,8 +36,8 @@ var (
 )
 
 func init() {
-	Command.Flags().IntVar(&count, "count", 1, "数量")
-	Command.Flags().BoolVar(&numshow, "numshow", false, "输出序号")
+	Command.Flags().IntVar(&count, "count", 1, "生成数量")
+	Command.Flags().BoolVar(&numshow, "numshow", false, "显示序号")
 	Command.Flags().IntVar(&len, "len", 20, "密码长度")
 
 }
