@@ -15,12 +15,45 @@
 
 ## 使用帮助
 + `v  [command] help` / `v [command] --help` / `v  [command] -h`
+```shell
+为开发者提供的CLI助手,So you Know, love Command Line MORE!
+
+Usage:
+   [flags]
+   [command]
+
+Available Commands:
+  agent       分析Http请求头中的Agent信息
+  completion  Generate the autocompletion script for the specified shell
+  decode      字符串编码工具
+  encode      编码字符串或者文件内容
+  help        Help about any command
+  hex         提供数据之间的进制转换
+  ip          输出当前设备的网络IP信息
+  json        JSON格式化
+  password    生成随机密码
+  proxy       在本地设备创建Http代理服务
+  qrcode      生成二维码文件
+  random      生成随机数，支持字符串，整数，浮点数
+  search      快速打开搜索引擎
+  time        输出当前或者未来的时间戳
+  url         快速打开网页
+  web         在本地设备运行静态资源
+  ws          建立WebSocket连接，并进行调试
+
+Flags:
+      --author string         作者: 燕归来兮 https://www.zhoutao123.com
+  -h, --help                  help for this command
+      --lang string           国际化语言
+      --searchEngine string   默认搜索引擎
+
+Use " [command] --help" for more information about a command.
+```
 
 
-## 配置
-+ `v config --lang=xx`
 
 ## 发布日志
++ ..
 
 ## 命令列表
 
