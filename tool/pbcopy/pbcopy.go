@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	stdin   bool
+	stdout  bool
 	file    string
 	Command = &cobra.Command{
 		Use:   "copy",
@@ -23,11 +23,10 @@ var (
 			if strings.Compare(file, "") != 0 {
 				f, err := ioutil.ReadFile(file)
 				if err != nil {
-					fmt.Printf("%s\n", err)
-					panic(err)
+					return err
 				}
 				res = string(f)
-				if stdin {
+				if stdout {
 					fmt.Println(res)
 				}
 				return clipboard.WriteAll(res)
@@ -36,7 +35,7 @@ var (
 			// 有数据，尝试使用数据
 			if len(args) > 0 {
 				res = args[0]
-				if stdin {
+				if stdout {
 					fmt.Println(res)
 				}
 				return clipboard.WriteAll(res)
@@ -52,7 +51,7 @@ var (
 
 			}
 
-			if stdin {
+			if stdout {
 				fmt.Println(res)
 			}
 			return clipboard.WriteAll(res)
@@ -61,6 +60,6 @@ var (
 )
 
 func init() {
-	Command.Flags().BoolVar(&stdin, "stdin", false, "将内容打印到标准输出")
+	Command.Flags().BoolVar(&stdout, "stdout", false, "将内容打印到标准输出")
 	Command.Flags().StringVar(&file, "file", "", "需要拷贝的文件路径")
 }

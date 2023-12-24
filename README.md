@@ -68,8 +68,9 @@ Use " [command] --help" for more information about a command.
 - [x] JSON美化 `v json`
 - [x] 随机数字 `v random [--count=4] [--len=10] [--type=string]`
 - [x] 查看时间 `v time`
-- [x] 复制内容到剪切 `v copy [--file=xxx] [--stdin=true]` 
-- [x] 重定向内容到剪切板 `cat xxx | v copy [--stdin=true]`
+- [x] 复制内容到剪切 `v copy [--file=xxx] [--stdout=true]` 
+- [x] 重定向内容到剪切板 `cat xxx | v copy [--stdout=true]`
+- [x] 将剪切板内容输出到文件 `v board [--file=xxx] [--stdout=true]`
 - [ ] Cron表达式 `v cron '0 * * * * ?'`
 - [ ] 文件下载 `v download (fileUrl)`
 

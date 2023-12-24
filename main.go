@@ -20,6 +20,7 @@ import (
 	"vhelper/safe/password"
 	"vhelper/tool/jsonFormat"
 	"vhelper/tool/pbcopy"
+	"vhelper/tool/pboard"
 	"vhelper/tool/random"
 	"vhelper/tool/time"
 )
@@ -45,9 +46,8 @@ var rootCmd = &cobra.Command{
 			fmt.Println("默认搜索引擎更新为：" + searchEng)
 		}
 
-		err := viper.SafeWriteConfig()
-		fmt.Println()
-		return err
+		_ = viper.SafeWriteConfig()
+		return nil
 	},
 }
 
@@ -70,13 +70,14 @@ func init() {
 	rootCmd.AddCommand(proxy.Command)
 	rootCmd.AddCommand(webpage.Command)
 	rootCmd.AddCommand(pbcopy.Command)
+	rootCmd.AddCommand(pboard.Command)
 }
 
 func initCmdFlag() {
 	rootCmd.DisableAutoGenTag = true
 	rootCmd.SetVersionTemplate("V0.1")
-	rootCmd.PersistentFlags().StringVar(&lang, "lang", "", "国际化语言")
-	rootCmd.PersistentFlags().StringVar(&searchEng, "searchEngine", "", "默认搜索引擎")
+	//rootCmd.PersistentFlags().StringVar(&lang, "lang", "", "国际化语言")
+	//rootCmd.PersistentFlags().StringVar(&searchEng, "searchEngine", "", "默认搜索引擎")
 	rootCmd.PersistentFlags().String("author", "", "作者: 燕归来兮 https://www.zhoutao123.com")
 }
 
