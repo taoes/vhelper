@@ -8,15 +8,15 @@ import (
 )
 
 var (
-	format      string
+	after       string
 	TimeCommand = &cobra.Command{
 		Use:   "time",
 		Short: "输出当前或者未来的时间戳",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			currentTime := time.Now() //当前时间
 
-			if len(args) >= 1 {
-				m, err := time.ParseDuration(args[0])
+			if len(after) >= 1 {
+				m, err := time.ParseDuration(after)
 				if err != nil {
 					_ = fmt.Errorf("after time format error\n")
 					return err
@@ -45,5 +45,5 @@ var (
 )
 
 func init() {
-	TimeCommand.Flags().StringVar(&format, "format", "", "时间格式")
+	TimeCommand.Flags().StringVar(&after, "after", "", "未来时间")
 }

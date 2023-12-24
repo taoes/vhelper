@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"net/http"
+	"path/filepath"
 	"strconv"
 )
 
@@ -15,10 +16,14 @@ var (
 		Use:   "web",
 		Short: "在本地设备运行静态资源",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("静态资源服务器启动在[%s:%s],资源文件路径:%s .....", host, strconv.Itoa(port), path)
+			abs, err := filepath.Abs(path)
+			if err != nil {
+				return err
+			}
+			fmt.Printf("静态资源服务器启动在[%s:%s],资源文件路径:%s .....", host, strconv.Itoa(port), abs)
 			fmt.Println()
 			http.Handle("/", http.FileServer(http.Dir(path)))
-			err := http.ListenAndServe(host, nil)
+			err = http.ListenAndServe(host, nil)
 			return err
 		},
 	}

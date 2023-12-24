@@ -14,8 +14,8 @@
 一款转为程序员设计的终端命令行工具集合，基于Go 语言设计，支持Windows, Mac以及Linux  等操作系统,  目前正在开发中, 欢迎您的关注
 
 ## 使用帮助
-+ `v  [command] help` / `v [command] --help` / `v  [command] -h`
-```shell
+- [x] `v  [command] help` / `v [command] --help` / `v  [command] -h`
+```text
 为开发者提供的CLI助手,So you Know, love Command Line MORE!
 
 Usage:
@@ -50,45 +50,33 @@ Flags:
 Use " [command] --help" for more information about a command.
 ```
 
-
-
-## 发布日志
-+ ..
-
 ## 命令列表
 
+### 文件
+- [x] 二维码 `v qrcode (content) [--level=1] [--size=256] [--file=/tmp/xx.png]`
+
 ### 计算
-#### 进制转换
-`v hex 123` 将输出16/10/8/2 进制的数据，参数如下
-1. base： 给定数据的进制，默认为10进制，如将16进制数据转换 `v hex FF --base=16`
+- [x] 进制转换 `v hex (content) [--base=16]`
 
 
 ### 安全
-+ 编码 `v encode [content] [--type=base64]`
-+ 解码 `v decode [content] [--type=base64]`
-+ 密码 `v password [--count=5] [--len=10] [--numshow=true]`
+- [x] 编码内容 `v encode (content) [--type=base64]`
+- [x] 解码内容 `v decode (content) [--type=base64]`
+- [x] 生成密码 `v password [--count=5] [--len=10] [--numshow=true]`
 
 ### 工具
-+ JSON
-
-+ 随机数字
-
-+ 时间 `v time [--after=4h]`
+- [x] JSON美化 `v json`
+- [x] 随机数字 `v random [--count=4] [--len=10] [--type=string]`
+- [x] 查看时间 `v time`
 
 
 ### 网络
+- [x] 查询IP地址 `v ip [--domain=www.baidu.com]`
+- [x] 静态资源服务器 `v web [--host=127.0.0.1:3364] [--path=.]`
+- [x] 正向代理服务器 `v proxy --host=xxxx [--port=3364] [--debug=false]`
+- [ ] WebSocket `v ws --url=ws://xxxx`
+- [x] 打开网页 `v url (webUrl)`
 
-+ 查询IP `v ip [--domain=www.baidu.com]`
-+ 静态资源服务 `v web [--host=:3364] [--path=.]`
->  1. host: 开启的款口和主机地址，比如 `v web --host=:1234` 将使服务启动在`3364`端口
->  2. path：静态资源地址，默认值是当前路径，`v web --path=/tmp`
 
-+ 正向代理服务器 `v proxy --host=xxxx [--port=3364] [--debug=false] [--prefix=xx]`
->  1. port: 服务启动端口,默认值`3364`
->  2. host: 必填参数, 目标主机的主机名，如 `v proxy --host=https://www.baidu.com`
->  3. debug： 是否是调试模式, 默认值 false。调试模式将输出更多细节日志
->  4. prefix: 转发前缀,将在请求URI添加的前缀
-
-+ WebSocket `v ws --url=ws://xxxx` 或者
-+ DNS `v dns [--refresh=true] [--domain=xxx]` 刷新DNS或者解析DNS
-+ Ping `v ping host --count=10` PING 主机
+## 更新日志
+- [ ] 暂无
